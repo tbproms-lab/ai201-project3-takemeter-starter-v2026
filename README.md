@@ -54,35 +54,87 @@
      The decision rule is worth a point on its own and it's the thing most
      people leave out. Every taxonomy has a hardest boundary. Name yours. -->
 
-### `label_one`
+### `analysis`
 
 **Definition:**
+Explains or argues something about the season using a specific, checkable fact (a number, a named player, a result)
 
 **Example 1:**
->
+Only 1/5 of Burnley's defence last season played consistently this season, it makes more sense once you realise it's a different set of players.
+
+Trafford - Man City
+
+Egan-Riley - Ligue 1
+
+Roberts - injured for the entire season
+
+Humphreys - injured most of the season and then had to cover across LB and CB
 
 **Example 2:**
->
+I don't know what to make of it... but I find it interesting.
 
-### `label_two`
+The gap from 1st to 5th was 18 points.
+
+The gap from 5th to 17th was 19 points.
+
+Arsenal and Spurs were about the same distance from the Champions league bubble. Only 6-7 games
+
+### `banter`
 
 **Definition:**
+A joke or dig aimed at a club or fanbase, meant to needle or get a laugh rather than to argue a point
 
 **Example 1:**
->
+Congratulations Spurs on back to back 17th place finishes. Consistency is key to building a good foundation.
 
 **Example 2:**
->
+Sunderland above Newcastle, natural order is restored.
+
+### `reaction`
+
+**Definition:**
+An immediate expression of feeling about the result, with no claim for anyone to check or dispute
+
+**Example 1:**
+Best season of my life... I’m delirious right now.
+
+**Example 2:**
+Most nerve wracking second half ever.
 
 ### The hardest boundary
 
+Love them or hate them, Arsenal finally got it done.
+
+People laughed at anyone who even mentioned United in the Europa League places, Scamorim tax was so real lmao.
+
+Top 4 and a European trophy for Villa... Emery is a top manager.
+
+If Slot doesn't start next season on fire, he is so gone lol 💀
+
+Iraola has a bright future, what he's done is insane! Buzzing for Bournemouth to qualify for Europe.
+
+Sunderland might be the surprise package of season... 7th place & EL football next season with the cherry on top of Newcastle finishing in the bottom half lol.
+
+Chelsea... LOL. LMAO even!
+
+It's mad that 16th place would be success for Spurs next season 😭
+
+Feel bad for West Ham, I hope they bounce back! 🙏
+
 **Which two labels:**
+
+`banter` vs `reaction`. Most lines are digs at clubs, but the comment is also a season-end vent, so my first instinct was `reaction`. A single `analysis` line (Villa/Emery) is also in there but is outnumbered.
 
 **The decision rule I used every time:**
 <!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
      if the tone is heated." -->
-
-
+1. A fact that only sets up a dig (sarcasm, a mocking emoji, a punchline)
+   is `banter`, even though it's checkable. A fact that supports a claim
+   about why or how something happened is `analysis`.
+2. For a comment that mixes purposes, label it by what most of its lines
+   are doing. A line is one paragraph (text separated by a blank line).
+   Count only lines that fit a label. If lines split evenly, use the
+   label of the first line.
 
 ---
 
