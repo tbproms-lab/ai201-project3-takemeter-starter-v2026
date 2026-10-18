@@ -55,11 +55,11 @@ whether you hit them:
 
 <!-- Your criterion. It must name a number. -->
 
-
+Overall accuracy in labeling is 0.65
 
 **Why this target:**
 
-
+With three labels, random guessing gets about 33%. I chose 0.65 because it is double the 33% chance of landing in one of the three labels correctly. 
 
 ---
 
@@ -67,11 +67,11 @@ whether you hit them:
 
 <!-- Your criterion. -->
 
-
+Every label gets at least 0.50 F1
 
 **Why this target:**
 
-
+I don’t want one label to fail while the overall number looks fine. analysis is probably my rarest label, so I set the bar lower than overall accuracy. Anything under 0.50 means the model is wrong about as often as it’s right for that label.
 
 ---
 
@@ -79,11 +79,11 @@ whether you hit them:
 
 <!-- Your criterion. -->
 
-
+Every label has at least 30 examples
 
 **Why this target:**
 
-
+I picked 30 because less than that and the per-label score jumps around. Analysis is most likely to fall towards this baseline. If analysis is short, I’ll go find more of it. 
 
 ---
 
@@ -91,11 +91,11 @@ whether you hit them:
 
 <!-- Your criterion. -->
 
-
+A second person agrees with me on at least 80% of 30 comments
 
 **Why this target:**
 
-
+I chose 80% of 30 comments because my labels are clearly defined, but it shouldn't be higher because a good amount of labels could be arguable for another label. But if following decision rules, we should land on the same label for 80% of comments.
 
 ---
 
@@ -103,11 +103,11 @@ whether you hit them:
 
 <!-- Your criterion. -->
 
-
+No label is more than 3x bigger than any other
 
 **Why this target:**
 
-
+I chose this criteria to help on balance because analysis might be hard to find in the thread but if it's ridiculously small compared to other labels, then there needs to be a rebalancing and redefining.
 
 ---
 
