@@ -446,3 +446,35 @@ learned:**
 ---
 
 📖 **How to run this project: [RUNNING.md](RUNNING.md)**
+
+## Hard cases
+
+**1.**
+> *The post:* "My rant has been slightly nullified now that we didn't finish last for the first time ever in the Prem and the first time in over 100 years. But FUCK. ME. we were the worst team in the league since October. If it wasn't for a historically bad AND unlucky start from Wolves they would have been clear of us by February. ..."
+>
+> *Could have been:* `reaction` or `analysis`
+>
+> *I chose `reaction`, because of rule 2.* The file stores the post as one paragraph, so it is one line and gets one label. That line is mostly venting, and the checkable facts (worst since October, Wolves' start) back up the rant instead of explaining how the season went.
+
+**2.**
+> *The post:* "tbf Brentford didn't win a game in March or April so they've started the bottling much earlier"
+>
+> *Could have been:* `analysis` or `banter`
+>
+> *I chose `analysis`, because of rule 1.* The fact (no win in March or April) supports a claim about how and when Brentford bottled. There is no sarcasm, mocking emoji or punchline, so the fact isn't just setting up a dig.
+
+**3.**
+> *The post:* "The Isak transfer saga ended up fucking both Newcastle and Pool which is genuinely impressive. "
+>
+> *Could have been:* `analysis` or `banter`
+>
+> *I chose `banter`, because of rule 1.* It names a cause (the Isak saga), but "genuinely impressive" is sarcasm, and the cause is only there to set up a dig at both clubs. It gives no checkable detail about how the saga hurt them.
+
+## Label counts
+
+| Label | Count |
+|---|---|
+| `analysis` | 66 |
+| `banter` | 71 |
+| `reaction` | 63 |
+| **Total** | 200 |
