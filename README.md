@@ -190,17 +190,24 @@ I labelled the first 20 posts cold, by hand, with no AI help (marked `cold` in t
 
 <!-- Your starting model, your settings, and anything you changed and why. -->
 
-**Base model:**
+**Base model:** `distilbert-base-uncased`
+device: mps  (Apple Silicon GPU (MPS))
+torch:  2.14.1
 
-**Settings:** <!-- epochs, learning rate, batch size, seed -->
+**Settings:** 
+3 epochs
+learning rate 2e-5
+batch size 16
+seed 42 (max length 128)
 
 **Anything I changed from the defaults, and why:**
+I didn't change anything from the defaults.
 
-**Split sizes:** <!-- train / val / test, and per-label counts in the test
-split. If a label had fewer than about 8 in test, say so — it explains a lot
-of next unit's variance. -->
-
-
+**Split sizes:** 
+139 train / 31 val / 30 test 
+(200 posts, 70/15/15, stratified, seed 42). 
+Test split per label: analysis 10, banter 11, reaction 9.
+ No label had fewer than about 8 in test
 
 ---
 
