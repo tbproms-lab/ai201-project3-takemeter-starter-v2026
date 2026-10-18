@@ -42,7 +42,7 @@
 <!-- Your community, and what your classifier sorts posts into. Three or four
      sentences. -->
 
-
+TakeMeter is built for r/soccer, specifically the fan comments on the 2025-26 Premier League final table thread. It sorts each comment into one of three labels: `analysis`, `banter` or `reaction`. The goal is to tell apart fans who back a point with a checkable fact, fans who are just needling a rival club, and fans who are venting how they feel about the result.
 
 ---
 
@@ -60,6 +60,7 @@
 Explains or argues something about the season using a specific, checkable fact (a number, a named player, a result)
 
 **Example 1:**
+
 Only 1/5 of Burnley's defence last season played consistently this season, it makes more sense once you realise it's a different set of players.
 
 Trafford - Man City
@@ -71,6 +72,7 @@ Roberts - injured for the entire season
 Humphreys - injured most of the season and then had to cover across LB and CB
 
 **Example 2:**
+
 I don't know what to make of it... but I find it interesting.
 
 The gap from 1st to 5th was 18 points.
@@ -222,15 +224,15 @@ Test split per label: analysis 10, banter 11, reaction 9.
 
 **Moment 1**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I asked it to help me label 180 out of the 200 posts based on the rules and prior decisions
+- *What came back:* It labelled the 180 rows using my guidelines
+- *What I changed:* I changed a couple of the labels to fit my labels better.
 
 **Moment 2**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I asked AI to help me count how many posts were under each label
+- *What came back:* It brought back the counts.
+- *What I changed:* I didn't change anything on this side since I didn't do the counts personally.
 
 **Pre-labelling disclosure:** 180 of the 200 posts were pre-labelled by an AI model. I read and checked every one of them against my taxonomy and decision rules, and corrected the ones I disagreed with. The other 20 were labelled cold, by me alone.
 
