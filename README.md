@@ -144,18 +144,19 @@ Feel bad for West Ham, I hope they bounce back! 🙏
      cases. -->
 
 **Where the posts came from:**
+The 200+ Reddit comments came from an r/soccer thread about the 2025-26 Premier League final table.
 
-**How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
-Say so plainly — the disclosure is required, not penalised. -->
+**How I labelled them:** 
+I labelled the first 20 posts cold, by hand, with no AI help (marked `cold` in the `note` column of `labels.csv`). The other 180 were pre-labelled by an AI model, and I then read every one and corrected the labels I disagreed with (marked `checked`).
 
 **Counts per label:**
 
 | Label | Count | Share |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+| `analysis` | 66 | 33% |
+| `banter` | 71 | 35.5% |
+| `reaction` | 63 | 31.5% |
+| **Total** | 200 | 100% |
 
 **Three hard cases**
 
@@ -163,25 +164,25 @@ Say so plainly — the disclosure is required, not penalised. -->
      been, and what you chose. These are worth more than the easy 190. -->
 
 **1.**
-> *The post:*
+> *The post:* "My rant has been slightly nullified now that we didn't finish last for the first time ever in the Prem and the first time in over 100 years. But FUCK. ME. we were the worst team in the league since October. If it wasn't for a historically bad AND unlucky start from Wolves they would have been clear of us by February. ..."
 >
-> *Could have been:*
+> *Could have been:* `reaction` or `analysis`
 >
-> *I chose, because:*
+> *I chose `reaction`, because of rule 2.* The file stores the post as one paragraph, so it is one line and gets one label. That line is mostly venting, and the checkable facts (worst since October, Wolves' start) back up the rant instead of explaining how the season went.
 
 **2.**
-> *The post:*
+> *The post:* "tbf Brentford didn't win a game in March or April so they've started the bottling much earlier"
 >
-> *Could have been:*
+> *Could have been:* `analysis` or `banter`
 >
-> *I chose, because:*
+> *I chose `analysis`, because of rule 1.* The fact (no win in March or April) supports a claim about how and when Brentford bottled. There is no sarcasm, mocking emoji or punchline, so the fact isn't just setting up a dig.
 
 **3.**
-> *The post:*
+> *The post:* "The Isak transfer saga ended up fucking both Newcastle and Pool which is genuinely impressive. "
 >
-> *Could have been:*
+> *Could have been:* `analysis` or `banter`
 >
-> *I chose, because:*
+>\ *I chose `banter`, because of rule 1.* It names a cause (the Isak saga), but "genuinely impressive" is sarcasm, and the cause is only there to set up a dig at both clubs. It gives no checkable detail about how the saga hurt them.
 
 ---
 
@@ -224,7 +225,7 @@ of next unit's variance. -->
 - *What came back:*
 - *What I changed:*
 
-**Pre-labelling disclosure:**
+**Pre-labelling disclosure:** 180 of the 200 posts were pre-labelled by an AI model. I read and checked every one of them against my taxonomy and decision rules, and corrected the ones I disagreed with. The other 20 were labelled cold, by me alone.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
@@ -446,35 +447,3 @@ learned:**
 ---
 
 📖 **How to run this project: [RUNNING.md](RUNNING.md)**
-
-## Hard cases
-
-**1.**
-> *The post:* "My rant has been slightly nullified now that we didn't finish last for the first time ever in the Prem and the first time in over 100 years. But FUCK. ME. we were the worst team in the league since October. If it wasn't for a historically bad AND unlucky start from Wolves they would have been clear of us by February. ..."
->
-> *Could have been:* `reaction` or `analysis`
->
-> *I chose `reaction`, because of rule 2.* The file stores the post as one paragraph, so it is one line and gets one label. That line is mostly venting, and the checkable facts (worst since October, Wolves' start) back up the rant instead of explaining how the season went.
-
-**2.**
-> *The post:* "tbf Brentford didn't win a game in March or April so they've started the bottling much earlier"
->
-> *Could have been:* `analysis` or `banter`
->
-> *I chose `analysis`, because of rule 1.* The fact (no win in March or April) supports a claim about how and when Brentford bottled. There is no sarcasm, mocking emoji or punchline, so the fact isn't just setting up a dig.
-
-**3.**
-> *The post:* "The Isak transfer saga ended up fucking both Newcastle and Pool which is genuinely impressive. "
->
-> *Could have been:* `analysis` or `banter`
->
-> *I chose `banter`, because of rule 1.* It names a cause (the Isak saga), but "genuinely impressive" is sarcasm, and the cause is only there to set up a dig at both clubs. It gives no checkable detail about how the saga hurt them.
-
-## Label counts
-
-| Label | Count |
-|---|---|
-| `analysis` | 66 |
-| `banter` | 71 |
-| `reaction` | 63 |
-| **Total** | 200 |
