@@ -234,6 +234,12 @@ Test split per label: analysis 10, banter 11, reaction 9.
 - *What came back:* It brought back the counts.
 - *What I changed:* I didn't change anything on this side since I didn't do the counts personally.
 
+**Moment 3**
+
+- *What I asked for:* I asked AI to help me understand why my banter label was completely swaloowing my reaction label
+- *What came back:* It suggested adding more reaction posts.
+- *What I changed:* My reddit threads was literally finished from the 200 posts I added, so I decided to add some boundaries to my labeling and relabel some posts.
+
 **Pre-labelling disclosure:** 180 of the 200 posts were pre-labelled by an AI model. I read and checked every one of them against my taxonomy and decision rules, and corrected the ones I disagreed with. The other 20 were labelled cold, by me alone.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
@@ -346,26 +352,6 @@ My biggest off diagonal number is the reaction posts being counted as banter. In
 
 **Criteria 3, 4 and 5 were met, so there is nothing to diagnose.**
 
----|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
-
-**Diagnoses**
-
-<!-- For each miss: the cause, and how you know. The four common causes are:
-     too few examples for a label, a boundary you applied inconsistently, a
-     genuinely hard label pair, and a task the model can't reach from this
-     much data.
-
-     ⚠️ Use your agreement report as evidence. It is the only instrument you
-     have that can tell a LABELLING problem from a MODEL problem, and this
-     section is graded on whether you used it that way. -->
-
-
-
 ---
 
 ## Agreement Report
@@ -391,39 +377,71 @@ I matched everything the staff rated the text 100% not because it was very easy.
 ## The Improvement
 
 **What I changed:**
+I relabelled one boundary, `banter` vs `reaction`, by applying a single rule to all 200 posts instead of two. The rule is "the target decides". If the point of a comment is aimed at another club, manager or fanbase to needle or laugh at it, it is `banter`. If it expresses how the writer feels about their own club or the result, including praise, sympathy or self-deprecation, it is `reaction`. A bare prediction with no dig is also `reaction`.
+
+I changed **10 rows, all `banter` → `reaction`**. They're marked "relabelled unit 6" in the `note` column of `labels.csv`.
+- Rows 5 and 133 were praise or amazement with no dig.
+- Rows 118, 120 and 151 were bare predictions.
+- Rows 170 and 171 were self-deprecating.
+- Rows 28, 150 and 162 had an unclear target or tone.
+
+I didn't touch the rows that were already `reaction`. When I read them against the rule, most of the `reaction` posts that looked like digs (#PepOut, "Fuck Everton") were venting about the writer's own club, which the rule keeps as `reaction`.
+
+Counts changed from 66 / 71 / 63 to `analysis` 66, `banter` 61, `reaction` 73. Nothing else changed: same model, settings and seeds.
 
 **Which diagnosis pointed at it:**
+The diagnosis was "a genuinely hard `banter`/`reaction` pair", with the confusion matrix showing 6 of 9 `reaction` posts called `banter`. My README's own hardest-boundary section named this pair, and when I read the rows I found the rule applied two ways. Short predictions and self-deprecating lines had been put under `banter` without a dig, even though the same kind of post was `reaction` elsewhere.
 
 ### Run Log — After
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.65 | 0.500 | 0.500 | 0.567 | MISSED |
+| 2. Every label F1 | ≥ 0.50 each | min 0.000 (`banter`) | min 0.000 (`banter`) | min 0.200 (`banter`) | MISSED |
+| 3. Examples per label | ≥ 30 | 61 (smallest, `banter`) | 61 | 61 | MET |
+| 4. Agreement | ≥ 80% of 30 | 30/30 = 100% | 100% | 100% | MET |
+| 5. Balance (largest ÷ smallest) | ≤ 3x | 1.20x (73 / 61) | 1.20x | 1.20x | MET |
+
+| Measure | Seed 42 | Seed 7 | Seed 2024 | Spread |
+|---|---|---|---|---|
+| Overall accuracy | 0.500 | 0.500 | 0.567 | 0.067 |
+| Macro F1 | 0.397 | 0.394 | 0.487 | 0.094 |
+| F1 — `analysis` | 0.692 | 0.581 | 0.741 | 0.160 |
+| F1 — `banter` | 0.000 | 0.000 | 0.200 | 0.200 |
+| F1 — `reaction` | 0.500 | 0.600 | 0.522 | 0.100 |
+
+Criterion 4 is unchanged because the agreement check was against the staff taxonomy, which I didn't edit.
+
+Seed 42 confusion matrix, after:
+
+| true \ predicted | analysis | banter | reaction |
+|---|---|---|---|
+| **analysis** | 9 | 0 | 1 |
+| **banter** | 3 | 0 | 6 |
+| **reaction** | 4 | 1 | 6 |
 
 **Did it help, and how do I know:**
+Barely, and it didn't fix the problem. Mean accuracy went from 0.456 to 0.522 and the spread from 0.133 to 0.067, but no criterion went from MISSED to MET. The failure moved instead of going away. `reaction` used to score 0.000 with 6 of 9 called `banter`. Now `banter` scores 0.000 on seeds 42 and 7, with 6 of 9 real `banter` posts called `reaction` and almost none going back. On seed 7 the model never predicted `banter` at all. So the model still can't separate the pair and falls back on whichever of the two is bigger in training. That's now `reaction`, since the relabel made it the largest label.
 
-<!-- If it didn't, say so. Relabelling that didn't help is a genuinely
-     interesting result and earns full credit. -->
+Cautions on reading the numbers:
+- Each label has only 9–11 test posts, so one post moves a label's F1 a lot. The 0.067 accuracy gain on seed 2024 is two posts.
+- I changed 10 labels, so the splits for the same seed contain different posts, and the before and after tests aren't identical.
+- Mean confidence when right and when wrong stayed nearly equal (seed 42: 0.368 vs 0.358), so the model is still close to guessing.
 
-
+What this suggests is that my definitions weren't the main blocker. With about 140 training examples on a blurry pair, the relabel was a justified clean-up that didn't give DistilBERT enough signal to learn it.
 
 ---
 
 ## What's Still Broken
 
-<!-- For each criterion still missed: what you'd do, and why you stopped. -->
+- **Criterion 1 (accuracy ≥ 0.65): MISSED, 0.500 / 0.500 / 0.567.** Next I'd collect more `banter` and `reaction` posts that sit close to each other, especially `banter` with no laughing emoji or "lol", since that's the cue the model has to find. I stopped because I don't have that many more posts to hand, and a handful wouldn't change the picture.
+- **Criterion 2 (every label F1 ≥ 0.50): MISSED, `banter` at 0.000 / 0.000 / 0.200.** I'd add posts to `banter` and train with class weights so a smaller label can't be ignored. I stopped for the same reason, and because the diagnosis points at the data rather than at a training setting, so changing epochs or learning rate would be tuning blind.
+- **Criteria 3, 4 and 5 are met.** The model is not failing for lack of examples or balance, which is why the relabel was my first choice and more `banter` posts would be the second.
 
+**The gap between what I meant my labels to capture and what the model learned:**
+I meant `banter` to be "aimed at another club to needle it" and `reaction` to be "feeling about my own club or the result", but the model never learned that target idea. Its confusion matrix shows one of the two labels being swallowed by the other on every seed, which is what it does when a label is carried by cues like emojis and laughter rather than by who the comment is aimed at.
 
-
-**The gap between what I meant my labels to capture and what the model
-learned:**
-<!-- Two sentences. Your confusion matrix is the evidence. -->
-
-
+---
 
 <!-- ═════════════════════════════════════════════════════════════════════
 
