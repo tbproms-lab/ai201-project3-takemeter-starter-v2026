@@ -250,14 +250,17 @@ Test split per label: analysis 10, banter 11, reaction 9.
 
 | Measure | Baseline | Trained | Difference |
 |---|---|---|---|
-| Overall accuracy |  |  |  |
-| Macro F1 |  |  |  |
-| F1 — `label_one` |  |  |  |
-| F1 — `label_two` |  |  |  |
+| Overall accuracy | 0.467 | 0.500 | +0.033 |
+| Macro F1 | 0.363 | 0.389 | +0.026 |
+| F1 — `analysis` | 0.556 | 0.667 | +0.111 |
+| F1 — `banter` | 0.533 | 0.500 | -0.033 |
+| F1 — `reaction` | 0.000 | 0.000 | +0.000 |
 
 **What I predicted before I looked:**
 <!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
      prediction made afterwards isn't one. -->
+
+I think my trained model will beat the baseline model on all three labels because the trained model has all my data and expectations
 
 **What the gap actually means:**
 <!-- If the baseline matched your trained model, your fine-tuning added
