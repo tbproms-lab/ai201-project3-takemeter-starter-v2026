@@ -42,7 +42,7 @@
   },
   "confidence": {
     "mean_when_right": 0.38012421131134033,
-    "mean_when_wrong": 0.37290799617767334,
+    "mean_when_wrong": 0.37290796637535095,
     "accuracy_most_confident_third": 0.6,
     "accuracy_least_confident_third": 0.4,
     "n_per_third": 10
