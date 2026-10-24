@@ -277,29 +277,46 @@ I think my trained model will beat the baseline model on all three labels becaus
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.65 | 0.500 | 0.500 | 0.367 | MISSED |
+| 2. Every label F1 | ≥ 0.50 each | min 0.000 (`reaction`) | min 0.000 (`reaction`) | min 0.200 (`banter`) | MISSED |
+| 3. Examples per label | ≥ 30 | 63 (smallest, `reaction`) | 63 | 63 | MET |
+| 4. Agreement with second labeller | ≥ 80% of 30 | 30/30 = 100% | 100% | 100% | MET |
+| 5. Balance (largest ÷ smallest) | ≤ 3x | 1.13x (71 / 63) | 1.13x | 1.13x | MET |
+
+| Measure | Seed 42 | Seed 7 | Seed 2024 | Spread |
+|---|---|---|---|---|
+| Overall accuracy | 0.500 | 0.500 | 0.367 | 0.133 |
+| Macro F1 | 0.389 | 0.393 | 0.367 | 0.026 |
+| F1 — `analysis` | 0.667 | 0.640 | 0.500 | 0.167 |
+| F1 — `banter` | 0.500 | 0.538 | 0.200 | 0.338 |
+| F1 — `reaction` | 0.000 | 0.000 | 0.400 | 0.400 |
+
+Accuracy moved 0.133 across seeds — more than 10 points. This means my dataset is too small or too lopsided for a stable measure. But, that is weird because my dataset is spread pretty evenly acorss three labels.
 
 ### Confusion matrix
 
 <!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
      An image of a matrix earns nothing. -->
 
-| true \ predicted |  |  |  |
+| true \ predicted | analysis | banter | reaction |
 |---|---|---|---|
-| **** |  |  |  |
-| **** |  |  |  |
-| **** |  |  |  |
+| **analysis** | 9 | 1 | 0 |
+| **banter** | 5 | 6 | 0 |
+| **reaction** | 3 | 6 | 0 |
+
+Biggest confusion: 6 real `reaction` posts called `banter`.
+The other direction: 0 real `banter` posts called `reaction`.
+
+That's lopsided — the model leans toward `banter` on this pair.
+A direction like that usually points at your labelling rather than the
+model. Your agreement report is the thing that can tell you which.
 
 **My biggest off-diagonal number, and what it means:**
 <!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
      direction. "7 real analysis posts were called hot_take and only 3 went the
      other way" is a direction, not just an error rate. -->
 
-
+My biggest off diagonal number is the reaction posts being counted as banter. In fact, the model doesn't classify any of the posts as reaction, which is definetly the thing I need to fix. It seems like boundary between reaction and banter is unclear as 6 reaction posts were called banter but not the other way round.
 
 ---
 
@@ -310,6 +327,26 @@ I think my trained model will beat the baseline model on all three labels becaus
 
 | # | Criterion | Target | Verdict | How I decided |
 |---|---|---|---|---|
+| 1 | Overall accuracy | ≥ 0.65 | MISSED | 0.500, 0.500, 0.367. Not one seed reached 0.65, and the best is 0.15 short. |
+| 2 | Every label F1 | ≥ 0.50 | MISSED | `reaction` F1 was 0.000 on seeds 42 and 7, and 0.400 on seed 2024. `banter` fell to 0.200 on seed 2024. Seed 42 and 7 also had `banter` at 0.500 and 0.538, so only `analysis` cleared 0.50 on every seed (0.667, 0.640, 0.500). |
+| 3 | Examples per label | ≥ 30 | MET | 66 / 71 / 63. The smallest label (`reaction`) has twice the target. The data split is the same on every seed, so this holds on all three. |
+| 4 | Agreement | ≥ 80% | MET | 30/30 on the staff set, with no disagreements (`agreement_results.json`). |
+| 5 | Balance | ≤ 3x | MET | 71 / 63 = 1.13x. |
+
+**Diagnoses**
+
+**Criterion 1 (accuracy 0.50 / 0.50 / 0.37) and criterion 2 (`reaction` F1 0.00)** share one cause, so I diagnose them together.
+
+- *It is not a count problem.* Criteria 3 and 5 are met. `reaction` has 63 examples, about 44 in train, which is nearly the same as the other labels. A label that has as much data as the others still scored 0.00, so thinness is not the explanation.
+- *My agreement report doesn't show a labelling inconsistency.* I agreed with the staff on 30/30, so applying the written rules gives the same label as a second person. That argues against the rules themselves being applied two ways. Two caveats: the staff set tests whether I can follow the staff rules, not whether my own 200 are consistent, and 180 of my labels were AI pre-labelled and then checked by me. I can't fully rule out a `banter`/`reaction` inconsistency in my own file, but I have no evidence for one.
+- *The best match is a genuinely hard label pair.* The confusion matrix has 6 of 9 real `reaction` posts called `banter` on seeds 42 and 7, and 0 `banter` posts called `reaction`. My own taxonomy notes name `banter` vs `reaction` as the hardest boundary: season-end digs at clubs are also venting, and my first instinct was `reaction`. With about 44 training examples on a boundary that blurry, DistilBERT defaults to the label it's surer of.
+- *The model is barely above chance.* Mean confidence when right was 0.380 and when wrong was 0.373 on seed 42, and chance with three labels is 0.333. The model can't tell its good guesses from its bad ones, so it has learned little beyond `analysis`, which has the clearest surface cue (a checkable fact).
+- *Seed 2024 shows the instability.* It flipped to calling 7 real `banter` posts `reaction`, so `reaction` went from 0.00 to 0.40 while `banter` fell from 0.50 to 0.20. The boundary is being drawn differently each run, which means training only weakly constrains it. The test split is also only 30 rows (9 `reaction`), so one or two posts move a label's F1 a lot.
+- *Conclusion:* a hard `banter`/`reaction` pair with little data to separate it. It is not a lopsided dataset, which is why the spread surprised me.
+
+**Criteria 3, 4 and 5 were met, so there is nothing to diagnose.**
+
+---|---|---|---|---|
 | 1 |  |  |  |  |
 | 2 |  |  |  |  |
 | 3 |  |  |  |  |
