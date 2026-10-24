@@ -1,0 +1,184 @@
+{
+  "model": "facebook/bart-large-mnli",
+  "n": 30,
+  "seed": 42,
+  "held_out": true,
+  "used_definitions": true,
+  "scores": {
+    "n": 30,
+    "accuracy": 0.4666666666666667,
+    "f1_macro": 0.362962962962963,
+    "per_label": {
+      "analysis": {
+        "precision": 0.38461538461538464,
+        "recall": 1.0,
+        "f1": 0.5555555555555556,
+        "support": 10
+      },
+      "banter": {
+        "precision": 1.0,
+        "recall": 0.36363636363636365,
+        "f1": 0.5333333333333333,
+        "support": 11
+      },
+      "reaction": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 9
+      }
+    }
+  },
+  "predictions": [
+    {
+      "text": "After we lost to City, everyone was convinced it was done. In the end, they completely fell apart",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Wait Wolves with 20 points is actually impressive considering they only managed 3 wins in entire season",
+      "gold": "banter",
+      "predicted": "analysis"
+    },
+    {
+      "text": "As stoked as I am about winning it all, Sunderland and Bournemouth getting into Europe is fantastic ",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Carrick's come in and done a madness.",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Chelsea 33 points off the top\u2026 wow",
+      "gold": "banter",
+      "predicted": "analysis"
+    },
+    {
+      "text": "everton should be ashamed. couldn't even make it interesting.",
+      "gold": "banter",
+      "predicted": "analysis"
+    },
+    {
+      "text": "That's just people completely misunderstanding how statistics work. Just because there is a statistical anomaly does not mean that things will always revert back to the mean, especially not when there are only 38 games per season.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Top of the league with 5 games to go and went DWWDL to finish 7 points back.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Arsenal were knocking on the champions door for 3 seasons and they finally did it. While Spurs are knocking on the relegation door for 2 seasons now. Can they finally do it next season?",
+      "gold": "banter",
+      "predicted": "analysis"
+    },
+    {
+      "text": "3 points gained on last year, only way is up",
+      "gold": "banter",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Sunderland getting seventh on -6 GD goes to show how valuable it is to get as many points before and after AFCON to stay afloat",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "No thanks. I am okay with never living with this level of dread for the past 5 months as we slipped further and further down the table. ",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "7 points damn. city were level after they beat us and burnley. some collapse for them unfortunately",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Dear god I\u2019m sitting here waiting for them (NBC) to move along to actual celebrations of winning something meanwhile they are showing Spurs fans half celebrating half embarrassed",
+      "gold": "banter",
+      "predicted": "banter"
+    },
+    {
+      "text": "Sunderland beating Chelsea for European football. Would have been unimaginable before the season started.",
+      "gold": "banter",
+      "predicted": "analysis"
+    },
+    {
+      "text": "FUCKING SEVENTH HAHAHAHAHAHA",
+      "gold": "banter",
+      "predicted": "banter"
+    },
+    {
+      "text": "Oh you can rest assured I\u2019m laughing my head off as well",
+      "gold": "banter",
+      "predicted": "banter"
+    },
+    {
+      "text": "Howe was your manager for 11 years mate. It's a lot more difficult getting from League 2 to Premier League then getting from mid table to Europa in the Premier League itself",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "So what happens if Palace won the Conference League? Will Sunderland lose their UEL spot?",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I am heartbroken. Such a great chance at Europe. Too many stupid draws in the run-in. Happy for Sunderland but hate that it\u2019s come at our expense.",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "More people seems to be talking about Sunderland in 7th than Bournemouth in 6th, tbf... but also yes. Not enough credit is being given to Bournemouth, Sunderland and Brighton imo. Too many people focusing solely on Arsenal, Pep and Spurs/WHU.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Sunderland vs Juventus in Europe next year",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Too early to predict but I guess Chelsea will challange for the title next year, may even win it if they get their defence sorted out.",
+      "gold": "banter",
+      "predicted": "analysis"
+    },
+    {
+      "text": "While playing some of the ugliest, most pathetic flopping football I\u2019ve ever seen. Not sure how you lot can find any enjoyment out of it, but good on ya I suppose",
+      "gold": "banter",
+      "predicted": "banter"
+    },
+    {
+      "text": "Honestly believe Eufa should start capping how many teams can be in their comps from one league, 8/20 is silly.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Sunderland in Europa League is the overachievement of the season",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "That Wolves match had genuinely what I think is our worst stretch of play this season, though. Was absolutely bizarre.",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "the thing is it didn\u2019t even felt like they collapsed too. they were destroying brentford and palace 3 nil\u2019s. those two draws from everton and bournemouth were really crucial.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Kudos to Sunderland! Past 2 seasons have been 3 up 3 down (probably will happen next season too) - but here\u2019s Sunderland, promoted, finish 7th and qualify for Europe! Wishing them many years in the PL!",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "No 6th team in UCL",
+      "gold": "analysis",
+      "predicted": "analysis"
+    }
+  ]
+}
